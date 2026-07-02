@@ -117,11 +117,11 @@ Streamlit Dashboard
 | Project Setup | ✅ |
 | Data Cleaning | ✅ |
 | Exploratory Data Analysis | ✅ |
-| RFM Analysis | 🚧 |
-| Customer Segmentation | ⏳ |
-| Recommendation System | ⏳ |
+| RFM Analysis | ✅ |
+| Customer Segmentation | ✅ |
+| Product Recommendation | ⏳ |
 | Streamlit App | ⏳ |
-
+| Documentation | ⏳ |
 ---
 
 # 📊 Exploratory Data Analysis
@@ -160,12 +160,55 @@ Output files:
 
 # 🚀 Future Work
 
-- KMeans Customer Segmentation
-- Elbow Method
-- Silhouette Score
-- Product Recommendation System
-- Streamlit Deployment
+# 🤖 Machine Learning
 
+## Customer Segmentation
+
+Implemented **KMeans Clustering** using RFM (Recency, Frequency, Monetary) features.
+
+### Machine Learning Workflow
+
+- Feature Engineering using RFM Analysis
+- Feature Scaling using StandardScaler
+- Elbow Method for cluster selection
+- Silhouette Score evaluation
+- KMeans Clustering
+- Customer Segment Generation
+- Model Persistence using Joblib
+
+### Generated Files
+
+```
+models/
+│
+├── kmeans_model.pkl
+└── scaler.pkl
+```
+
+```
+data/processed/
+│
+└── customer_segments.csv
+```
+
+```
+outputs/
+├── figures/
+│   ├── elbow_curve.png
+│   └── customer_clusters.png
+│
+└── tables/
+    └── cluster_summary.csv
+```
+
+---
+
+# 🚀 Remaining Modules
+
+- Product Recommendation System
+- Streamlit Dashboard
+- Final Documentation
+- GitHub Project Polishing
 ---
 
 # 👨‍💻 Author
