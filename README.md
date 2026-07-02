@@ -203,12 +203,50 @@ outputs/
 
 ---
 
+# 🛍 Product Recommendation System
+
+Implemented an **Item-Based Collaborative Filtering** recommendation engine using **Cosine Similarity**.
+
+## Workflow
+
+- Customer–Product Matrix
+- Product Similarity Matrix
+- Cosine Similarity
+- Top 5 Product Recommendation
+- Model Persistence using Joblib
+
+## Generated Files
+
+### Data
+
+```
+data/processed/
+│
+└── product_similarity.csv
+```
+
+### Models
+
+```
+models/
+│
+└── product_similarity.pkl
+```
+
+### Features
+
+- Recommends Top 5 Similar Products
+- Uses Customer Purchase History
+- Cosine Similarity Based
+- Streamlit Ready
+
+---
+
 # 🚀 Remaining Modules
 
-- Product Recommendation System
 - Streamlit Dashboard
 - Final Documentation
-- GitHub Project Polishing
+- GitHub Repository Polishing
 ---
 
 # 👨‍💻 Author
