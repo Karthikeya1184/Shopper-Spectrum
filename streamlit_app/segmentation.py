@@ -7,10 +7,7 @@ from helper import (
     cluster_action
 )
 
-# -----------------------------------------
 # Load ML Models
-# -----------------------------------------
-
 model, scaler, _ = load_models()
 
 
@@ -29,7 +26,6 @@ Predict the customer segment using **Recency, Frequency and Monetary (RFM)** val
     col1, col2, col3 = st.columns(3)
 
     with col1:
-
         recency = st.number_input(
             "Recency (Days)",
             min_value=0,
@@ -38,7 +34,6 @@ Predict the customer segment using **Recency, Frequency and Monetary (RFM)** val
         )
 
     with col2:
-
         frequency = st.number_input(
             "Frequency",
             min_value=1,
@@ -47,7 +42,6 @@ Predict the customer segment using **Recency, Frequency and Monetary (RFM)** val
         )
 
     with col3:
-
         monetary = st.number_input(
             "Monetary",
             min_value=0.0,
@@ -56,61 +50,49 @@ Predict the customer segment using **Recency, Frequency and Monetary (RFM)** val
         )
 
     st.divider()
-    # -----------------------------------------
-# Predict Button
-# -----------------------------------------
 
-if st.button(
-    "🔍 Predict Customer Segment",
-    use_container_width=True
-):
+    # ---------------------------------------------------
+    # Prediction
+    # ---------------------------------------------------
 
-    try:
+    if st.button(
+        "🔍 Predict Customer Segment",
+        use_container_width=True
+    ):
 
-        # Create Feature Array
-        customer = np.array(
-            [[recency, frequency, monetary]]
-        )
+        try:
 
-        # Scale Features
-        customer_scaled = scaler.transform(
-            customer
-        )
-
-        # Predict Cluster
-        cluster = model.predict(
-            customer_scaled
-        )[0]
-
-        customer_type = cluster_name(cluster)
-
-        actions = cluster_action(cluster)
-
-        st.success(
-            f"Predicted Segment : {customer_type}"
-        )
-
-        st.divider()
-
-        st.subheader("📈 Business Recommendation")
-
-        for action in actions:
-
-            st.markdown(
-                f"✅ {action}"
+            customer = np.array(
+                [[recency, frequency, monetary]]
             )
 
-    except Exception as e:
+            customer_scaled = scaler.transform(customer)
 
-        st.error(e)
+            cluster = model.predict(customer_scaled)[0]
 
-        st.divider()
+            customer_type = cluster_name(cluster)
 
-with st.expander(
-    "ℹ Interpretation of Customer Segments"
-):
+            actions = cluster_action(cluster)
 
-    st.markdown("""
+            st.success(
+                f"Predicted Segment: {customer_type}"
+            )
+
+            st.subheader("📈 Business Recommendations")
+
+            for action in actions:
+                st.markdown(f"✅ {action}")
+
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
+
+    st.divider()
+
+    with st.expander(
+        "ℹ Interpretation of Customer Segments"
+    ):
+
+        st.markdown("""
 ### ⭐ High Value Customer
 
 - High purchase frequency
@@ -119,9 +101,9 @@ with st.expander(
 
 **Business Strategy**
 
-- Premium membership
-- VIP rewards
-- Exclusive offers
+- Premium Membership
+- VIP Rewards
+- Exclusive Offers
 
 ---
 
@@ -133,20 +115,21 @@ with st.expander(
 **Business Strategy**
 
 - Cross-selling
-- Product bundles
-- Loyalty points
+- Product Bundles
+- Loyalty Points
 
 ---
 
 ### 🟡 Occasional Customer
 
-- Purchases occasionally
+- Moderate purchase frequency
 - Moderate spending
 
 **Business Strategy**
 
-- Email marketing
-- Seasonal discounts
+- Email Marketing
+- Seasonal Discounts
+- Personalized Promotions
 
 ---
 
@@ -157,7 +140,7 @@ with st.expander(
 
 **Business Strategy**
 
-- Win-back campaign
-- Discount coupons
-- Reactivation emails
+- Win-back Campaign
+- Discount Coupons
+- Reactivation Emails
 """)
